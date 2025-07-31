@@ -6,7 +6,7 @@
 Given a character array s, reverse the array *in-place* using the two pointers approach.
 Do not use any extra space for another array — modify the input array directly.
 
-👨‍💻 Author: Dharani Manchala
+👨‍💻 Author: prathyusha myla
 💡 Topic: Two Pointers
 🧠 Level: Easy
 🏢 Asked in: Google, Amazon, Microsoft
