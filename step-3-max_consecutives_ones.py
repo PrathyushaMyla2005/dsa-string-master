@@ -5,7 +5,7 @@
 📌 Description:
 Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
 
-👨‍💻 Author: Dharani Manchala  
+👨‍💻 Author: Myla Prathyusha
 💡 Topic: Sliding Window, Two Pointers  
 🧠 Level: Medium  
 🏢 Asked in: Google, Facebook, Amazon
@@ -31,38 +31,49 @@ Output: 3
 🔄 Tags: Sliding Window, Two Pointers, Arrays
 """
 
-class Solution:
-    def longestOnes(self, nums, k):
-        """
+
+"""
         Returns the length of the longest subarray with at most k 0s flipped to 1s.
 
         :param nums: List[int] - binary input array
         :param k: int - maximum number of 0s we can flip
         :return: int - maximum consecutive 1s after flipping at most k zeros
         """
+class Solution:
+    def longestOnes(self, nums, k):
+        # Initialize the left pointer of the window
+        left = 0
 
-        left = 0     # Left pointer of the sliding window
-        max_len = 0  # Store the maximum length found
-        zeros = 0    # Count of 0s in the current window
+        # This will store the maximum length of consecutive 1s found
+        max_len = 0
 
+        # This will count how many 0s are currently inside the window
+        zeros = 0
+
+        # Start the sliding window from left to right
         for right in range(len(nums)):
-            if nums[right] == 0:
-                zeros += 1  # Count the 0 we may flip
 
-            # Shrink the window until we have <= k zeros
+            # If the current number is 0, we may want to flip it → count it
+            if nums[right] == 0:
+                zeros += 1
+
+            # If the number of 0s in the window is more than k, shrink the window
             while zeros > k:
+                # If the number going out from the left is 0, update zero count
                 if nums[left] == 0:
                     zeros -= 1
-                left += 1  # Shrink the window
+                # Move the left pointer to shrink the window
+                left += 1
 
-            # Update the max length
+            # Update max_len if the current window is larger
+            # right - left + 1 = current window size
             max_len = max(max_len, right - left + 1)
 
+        # Return the largest window size found
         return max_len
-
-# Example usage
-if __name__ == "__main__":  # ✅ Fixed typo here
-    solution = Solution()
-    nums = [1,1,1,0,0,0,1,1,1,1,0]
-    k = 2
-    print(solution.longestOnes(nums, k))  # Output: 6
+ # Example usage
+solution = Solution()
+nums = [1,1,1,0,0,0,1,1,1,1,0]
+k = 2
+result = solution.longestOnes(nums, k)
+print("Final Answer:", result)
